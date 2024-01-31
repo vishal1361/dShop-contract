@@ -1,3 +1,8 @@
+const file = require('fs')
+
+const MARKET_ABI = require('../artifacts/contracts/Market.sol/Market.json');
+const CONTRACT_ABI_PATH = "../../dShop-server/abis/contractAbi.json";
+
 async function main() {
   const [deployer] = await ethers.getSigners();
 
@@ -6,7 +11,17 @@ async function main() {
 
   const market = await ethers.deployContract("Market");
   console.log("market token address:", await market.getAddress());
+  console.log('Generating contract abi file in server...');
+  
+  // Writing ABI to a JSON file
+  const abi = MARKET_ABI.abi;
+  const abiJson = JSON.stringify(abi, null, 2);
 
+  fs.writeFileSync(CONTRACT_ABI_PATH, abiJson);
+
+  console.log(`Contract ABI written to: ${CONTRACT_ABI_PATH}`);
+  console.log('Do not forget to push the changes to github in dShop-server!')
+  console.log('Now verify the contract on blockchain!');
 }
 
 main()
