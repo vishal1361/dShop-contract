@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.1",
     "hardhat": "^2.19.5"
   },
   "devDependencies": {

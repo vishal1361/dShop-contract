@@ -1,9 +1,12 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("@nomicfoundation/hardhat-verify");
+require('dotenv').config();
 
-const ALCHEMY_API_KEY = "dxqQOSX4fYAHB2n7n6PP-AD3NxPKCWeW";
-const ETHERSCAN_API_KEY = "8W7UPGS9FNQTSSHR9BK7M43MR8M6QCTKUS";
-const SEPOLIA_PRIVATE_KEY = "5b25cfaba3f69ec17f8b290888fbbfc3b3f707b294d7e06780b9c2a042a94eef";
+
+const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY;
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
+const SEPOLIA_PRIVATE_KEY = process.env.SEPOLIA_PRIVATE_KEY;
+
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: {
