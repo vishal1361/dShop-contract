@@ -104,15 +104,22 @@ contract Market {
         return userManager.getUserInfo(_id);
     }
 
+    function findUserByEmail(string memory _email) public view returns(UserHelper.User memory) {
+        return userManager.findUserByEmail(_email) ;
+    }
+
+    function verifyUserDetails(string memory _email, string memory _password, string memory _userType) public view returns(bool) {
+        return userManager.verifyUserDetails(_email, _password, _userType);
+    }
+
     function addUser(
         string memory _id,
-        string memory _username,
-        string memory _password,
         string memory _name,
         string memory _email,
+        string memory _password,
         address payable _account,
         string memory _userType
-    ) public returns(bool) {
-        return userManager.addUser(_id, _username, _password, _name, _email, _account, _userType);
+    ) public returns(UserHelper.User memory) {
+        return userManager.addUser(_id, _name, _email, _password, _account, _userType);
     }
 }

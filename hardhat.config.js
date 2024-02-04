@@ -25,9 +25,11 @@ module.exports = {
     sepolia: {
       url: `https://eth-sepolia.g.alchemy.com/v2/${ALCHEMY_API_KEY}`,
       accounts: [SEPOLIA_PRIVATE_KEY],
+      gasPrice: 8000000000,
       allowUnlimitedContractSize: true
     },
     hardhat: {
+      chainId: 1337,
       allowUnlimitedContractSize: true
     }
   }

@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.4.1",
+    "fs": "^0.0.1-security",
     "hardhat": "^2.19.5"
   },
   "devDependencies": {
