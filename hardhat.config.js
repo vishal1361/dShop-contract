@@ -28,9 +28,13 @@ module.exports = {
       gasPrice: 8000000000,
       allowUnlimitedContractSize: true
     },
-    hardhat: {
-      chainId: 1337,
-      allowUnlimitedContractSize: true
+    // hardhat: {
+    //   chainId: 1337,
+    //   allowUnlimitedContractSize: true
+    // },
+    localhost: {
+      chainId: 31337,
+      url: "http://127.0.0.1:8545/"
     }
   }
 };

@@ -1,7 +1,7 @@
 const fs = require('fs')
 
 const MARKET_ABI = require('../artifacts/contracts/Market.sol/Market.json');
-const CONTRACT_ABI_PATH = '/Users/Vishal/Desktop/Project/dShop/dShop-server/abis/contractAbi.json';
+const CONTRACT_ABI_PATH = process.env.CONTRACT_ABI_PATH;
 
 async function main() {
   const [deployer] = await ethers.getSigners();
