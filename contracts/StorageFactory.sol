@@ -19,7 +19,7 @@ contract StorageFactory {
         string ipfsHash;
     }
 
-    mapping(string => Product) private storageRoom;
+    mapping(string productId => Product product) private storageRoom;
     string[] private productIds;
 
     event ProductStored(string indexed productId, string ipfsHash);
@@ -28,6 +28,18 @@ contract StorageFactory {
     modifier onlySeller(string memory _sellerId) {
         require(userManager.getUserInfo(_sellerId).userType ==  UserHelper.UserType.SELLER, "Not a seller.");
         _;
+    }
+    function logState() public view {
+        console.log("Logging product data : -------------------------------");
+        for (uint256 i = 0; i < productIds.length; i++) {
+            string memory key = productIds[i];
+            console.log("PS No - %s *******************", i);
+            console.log("Product id : %s ", storageRoom[key].productId);
+            console.log("Seller Id: ", storageRoom[key].sellerId);
+            console.log("Product Hash: ", storageRoom[key].ipfsHash);
+            console.log("*******************************");
+        }
+        console.log("---------------------------------------------------");
     }
 
     function storeProduct(string memory _productId, string memory _sellerId, string memory _ipfsHash) public onlySeller(_sellerId) returns (bool) {
@@ -39,7 +51,7 @@ contract StorageFactory {
         productIds.push(_productId);
 
         emit ProductStored(_productId, _ipfsHash);
-
+        logState();
         return true;
     }
 
@@ -61,7 +73,7 @@ contract StorageFactory {
         }
 
         emit ProductDeleted(_productId);
-
+        logState();
         return true;
     }
 

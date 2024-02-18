@@ -75,11 +75,12 @@ contract Market {
         string memory _sellerId, 
         string memory _ipfsHash
     ) public onlySeller(_sellerId) returns(bool) {
+        require(userManager.userExists(_sellerId) == true, "Seller Not registered.");
         return marketStorageFactory.storeProduct(_productId, _sellerId, _ipfsHash);
     }
 
-    function removeProductFromStorage(string memory _productId, string memory _sellerId) public onlySeller(_sellerId) {
-        require(marketStorageFactory.deleteProductById(_productId, _sellerId), "Unable to remove product.");
+    function removeProductFromStorage(string memory _productId, string memory _sellerId) public onlySeller(_sellerId) returns(bool){
+        return marketStorageFactory.deleteProductById(_productId, _sellerId);
     }
 
     function listAllProducts() public view returns(StorageFactory.Product[] memory) {
