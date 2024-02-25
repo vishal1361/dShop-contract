@@ -95,6 +95,17 @@ contract Market {
         return marketStorageFactory.retrieveProductBySellerId(_sellerId);
     }
 
+    function getCart(string memory _buyerId) public view returns (string[] memory) {
+        return marketStorageFactory.getCart(_buyerId);
+    }
+
+    function removeFromCart(string memory _buyerId, string memory _productId) public onlyBuyer(_buyerId) returns (bool) {
+        return marketStorageFactory.removeFromCart(_buyerId, _productId);
+    }
+
+    function addToCart(string memory _buyerId, string memory _productId) public onlyBuyer(_buyerId) returns (bool) {
+        return marketStorageFactory.addToCart(_buyerId, _productId);
+    }
 
     // UserHelper
     function userExists(string memory _userId) public view returns(bool) { 
